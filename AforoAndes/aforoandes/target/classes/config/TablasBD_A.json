@@ -1,0 +1,21 @@
+{
+	"title": "Nombres de las tablas de Parranderos Uniandes para la aplicación A",
+	"unidadPersistencia": "AforoAndes",
+	"tablas":
+	[
+		"AforoAndes_sequence",
+		"A_SUPERANDES",
+		"A_EMPLEADO",
+		"A_COMPRADOR",
+		"A_FACTURA",
+		"A_SUCURSAL",
+		"A_BODEGA",
+		"A_PROVEEDOR",
+		"A_CATEGORIA",
+		"A_ESTANTE",
+		"A_PROMOCION",
+		"A_PRODUCTO",
+		"A_PUNTOS"
+	
+	]
+}

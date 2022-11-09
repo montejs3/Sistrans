@@ -1,0 +1,138 @@
+{
+	"title": "Aplicación transaccional de AforoAndes Uniandes",
+	"frameH": 600,
+	"frameW": 800,
+	"bannerPath": "./src/main/resources/config/logo.png",
+	"menuBar":
+	[
+		
+			
+	
+		{ "menuTitle": "Requerimiento Funcionales de SQL INSERT",
+		"options":
+		  [
+			  {
+				  "label": "RF1",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "RF2",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "RF3",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "RF4",
+				  "event": "rfuno"
+			  }
+			  ,
+			  {
+				  "label": "RF5",
+				  "event": "rfuno"
+			  }
+			  ,
+			  {
+				  "label": "RF6",
+				  "event": "rfuno"
+			  }
+			  ,
+			  {
+				  "label": "RF7",
+				  "event": "rfuno"
+			  }
+			  ,
+			  {
+				  "label": "RF8",
+				  "event": "rfuno"
+			  }
+		  ]
+	  }	,
+		{ "menuTitle": "Administrador de datos del supermercado",
+		"options":
+		  [
+			  {
+				  "label": "Registrar roles de susuarios",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "Registrar una sucursal",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "Registrar usuarioa a una sucursal",
+				  "event": "rfuno"
+			  }
+		  ]
+	  }	,
+	  { "menuTitle": "Requerimiento Funcionales ",
+		"options":
+		  [
+			  {
+				  "label": "RF9",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "RF10",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "RF11",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "RF12",
+				  "event": "rfuno"
+			  }
+			  ,
+			  {
+				  "label": "RF13",
+				  "event": "rfuno"
+			  }
+			  ,
+			  {
+				  "label": "RF14",
+				  "event": "rfuno"
+			  }
+		
+		  ]
+	  },
+	  { "menuTitle": "Requerimiento Funcionales de Consulta ",
+		"options":
+		  [
+			  {
+				  "label": "RFC1",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "RFC2",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "RFC3",
+				  "event": "rfuno"
+			  },
+			  {
+				  "label": "RFC4",
+				  "event": "rfuno"
+			  }
+			  ,
+			  {
+				  "label": "RFC5",
+				  "event": "rfuno"
+			  }
+			  ,
+			  {
+				  "label": "RFC6",
+				  "event": "rfuno"
+			  }
+		
+		  ]
+	  }
+		
+		
+		
+	]
+}
+	

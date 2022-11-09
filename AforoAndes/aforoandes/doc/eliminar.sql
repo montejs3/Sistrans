@@ -1,0 +1,35 @@
+DROP TABLE "A_SUPERANDES" CASCADE CONSTRAINTS;
+DROP TABLE "A_EMPLEADO" CASCADE CONSTRAINTS;
+DROP TABLE "A_PUNTOS" CASCADE CONSTRAINTS;
+DROP TABLE "A_COMPRADOR" CASCADE CONSTRAINTS;
+DROP TABLE "A_FACTURA" CASCADE CONSTRAINTS;
+DROP TABLE "A_SUCURSAL" CASCADE CONSTRAINTS;
+DROP TABLE "A_BODEGA" CASCADE CONSTRAINTS;
+DROP TABLE "A_PROVEEDOR" CASCADE CONSTRAINTS;
+DROP TABLE "A_CATEGORIA" CASCADE CONSTRAINTS;
+DROP TABLE "A_ESTANTE" CASCADE CONSTRAINTS;
+DROP TABLE "A_PROMOCION" CASCADE CONSTRAINTS;
+DROP TABLE "A_PRODUCTO" CASCADE CONSTRAINTS;
+commit;
+
+
+delete from a_superandes;
+delete from a_empleado;
+delete from a_puntos;
+delete from a_comprador;
+delete from a_factura;
+delete from a_sucursal;
+delete from a_proveedor;
+delete from a_categoria;
+delete from a_bodega;
+delete from a_estante;
+delete from a_promocion;
+delete from a_producto;
+commit;
+
+
+
+
+
+
+

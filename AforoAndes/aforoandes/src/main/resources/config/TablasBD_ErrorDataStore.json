@@ -1,0 +1,21 @@
+{
+	"title": "Nombres de las tablas de Parranderos Uniandes para pruebas de la aplicación cuando la base de datos no existe o está caida",
+"unidadPersistencia": "AforoAndes",
+	"tablas":
+	[
+		"AforoAndes_sequence",
+		"X_SUPERANDES",
+		"X_EMPLEADO",
+		"X_COMPRADOR",
+		"X_FACTURA",
+		"X_SUCURSAL",
+		"X_BODEGA",
+		"X_PROVEEDOR",
+		"X_CATEGORIA",
+		"X_ESTANTE",
+		"X_PROMOCION",
+		"X_PRODUCTO",
+		"X_PUNTOS"
+	
+	]
+}
