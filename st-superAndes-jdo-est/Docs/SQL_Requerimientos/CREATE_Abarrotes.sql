@@ -1,0 +1,5 @@
+CREATE TABLE Abarrotes (
+IdProducto NUMBER NOT NULL,
+Tipo_Producto NUMBER NOT NULL,
+CONSTRAINT fk_IDProduc FOREIGN KEY (IdProducto) REFERENCES Productos(ID),
+CONSTRAINT fk_TIPO_Produc FOREIGN KEY (Tipo_Producto) REFERENCES Tipo_Producto(ID))

@@ -1,0 +1,9 @@
+ACCEPT numid NUMBER PROMPT 'ID del pedido'
+UPDATE Pedidos 
+SET FECHA = CAST(GETDATE() AS Date)
+WHERE ID = numid;
+
+UPDATE Productos 
+SET Productos.UNIDADES_DISPONIBLES = Productos.UNIDADES_DISPONIBLES + Pedidos.VOLUMENES
+FROM Pedidos, Productos
+WHERE Productos.CODIGO_BARRAS = Pedidos.PRODUCTO;

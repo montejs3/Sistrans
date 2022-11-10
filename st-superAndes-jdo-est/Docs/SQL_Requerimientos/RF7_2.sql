@@ -1,0 +1,17 @@
+INSERT INTO Productos_Perecederos
+VALUES(123456,'17/10/2023',1);
+
+INSERT INTO Productos_Perecederos
+VALUES(254789,'01/01/2023',1);
+
+INSERT INTO Productos_Perecederos
+VALUES(479513,'01/01/2023',1);
+
+INSERT INTO Productos_Perecederos
+VALUES(745912,'01/01/2023',1);
+
+INSERT INTO Productos_Perecederos
+VALUES(159357,'01/01/2023',1);
+
+INSERT INTO Productos_Perecederos
+VALUES(746315,'01/01/2023',1);
