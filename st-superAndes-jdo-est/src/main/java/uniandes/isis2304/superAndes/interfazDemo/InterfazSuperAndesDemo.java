@@ -328,7 +328,7 @@ public void adicionarSucursal(){
 				VORolUsuario rolUser = superAndes.darRolUsuarioPorId(user.getRolUsuario());
 				if(rolUser== null)
 				{
-					throw new Exception("El usuario no tiene rol")
+					throw new Exception("El usuario no tiene rol");
 				}
 
 				if(rolUser.getNombre().equals("ADMINISTRADOS_DATOS"))

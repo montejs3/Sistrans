@@ -1,0 +1,6 @@
+10:39:15,737 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - NO se encontró un archivo de configuración válido
+10:39:22,620 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se aplica configuración por defecto
+10:39:22,621 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - NO se encontró un archivo de configuración válido
+10:42:10,838 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Interfaz
+10:42:10,839 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se aplica configuración indicada en el archivo de configuración
+10:42:10,946 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Tablas BD
