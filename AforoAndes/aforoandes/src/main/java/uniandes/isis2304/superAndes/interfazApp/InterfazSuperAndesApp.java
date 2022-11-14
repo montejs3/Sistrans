@@ -394,7 +394,8 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 			{
 				VOCarrito ca = superAndes.carritoPorId(Long.parseLong(carritoCompra));
 				if(ca == null) throw new Exception("El carrito no existe");
-				VOProductos pro = superAndes.productoPorCodigo(Long.parseLong(idProducto));
+				VOPr
+				 oductos pro = superAndes.productoPorCodigo(Long.parseLong(idProducto));
 				if(pro == null) throw new Exception("El producto no existe");
 
 				int productosCarritoAhora = superAndes.carritoProductosPorIdCarrito(Long.parseLong(carritoCompra)).getCantidadProducto(Long.parseLong(idProducto)) - cantidad;
@@ -406,8 +407,8 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 					VOProductosCarrito prca = superAndes.actualizarProductoCarrito(Long.parseLong(carritoCompra), Long.parseLong(idProducto), productosCarritoAhora);
 				}
 
-				int nuevasExist = int nuevasExist = superAndes.productoPorCodigo(Long.parseLong(idProducto)).getExistenciasestante() + Integer.parseInt(cantidad);
-				int existenciasActualizadas = superAndes.actualizarExistencias(Long.parseLong(idProducto), nuevasExist);
+				int nuevasExist = superAndes.productoPorCodigo(Long.parseLong(idProducto)).getExistenciasestante() + Integer.parseInt(cantidad);
+				int existenciasActualizadas = superAndes.actualizarExistenciasEstante(Long.parseLong(idProducto), nuevasExist);
 			}
 			else
 			{
@@ -423,18 +424,88 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 	public void rfdieciocho() {
 		String resultado = "";
 		try {
-			String carritoCompra = JOptionPane.showInputDialog (this, "ID del carrito", "Sacar producto del carrito", JOptionPane.QUESTION_MESSAGE);
+			String carritoCompra = JOptionPane.showInputDialog (this, "ID del carrito", "Pagar los productos del carrito", JOptionPane.QUESTION_MESSAGE);
+
+			if(carritoCompra!=null){
+				List<VOProductosCarrito> productos = superAndes.darVOProductosCarrito(Long.parseLong(carritoCompra));
+
+				for (VOProductosCarrito producto : productos) {
+					int cantidadProducto = superAndes.darCantidadProductoCarrito(Long.parseLong(carritoCompra), producto.getCodigoBarras());
+
+					int nuevasExist = superAndes.productoPorCodigo(producto.getCodigoBarras()).getExistenciasestante() - cantidadProducto;
+					if(nuevasExist<0) throw new Exception("Ocurrió un error.");
+					if(nuevasExist==0){
+						int existenciasActualizadasEstante = superAndes.actualizarExistenciasEstante(producto.getCodigoBarras(), superAndes.darEstantePorProducto(producto.getCodigoBarras()).getCapacidad());
+						int existenciasActualizadasBodega = superAndes.actualizarExistenciasBodega(producto.getCodigoBarras(), superAndes.darExistenciasBodega(producto.getCodigoBarras())-superAndes.darEstantePorProducto(producto.getCodigoBarras()).getCapacidad());
+					}
+					else{
+						int existenciasActualizadasEstante = superAndes.actualizarExistenciasEstante(producto.getCodigoBarras(), nuevasExist);
+					}
+
+				}
+				int totalAPagar = superAndes.darTotalCarrito(Long.parseLong(carritoCompra));
+				resultado += totalAPagar;
+
+				VOCarrito carritoNuevo = superAndes.dejarCarrito(Long.parseLong(carritoCompra));
+
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
 
 	public void rfdiecinueve() {
+		String resultado = "";
+		try {
+			String carritoCompra = JOptionPane.showInputDialog (this, "ID del carrito", "Abandonar carrito", JOptionPane.QUESTION_MESSAGE);
+			if (carritoCompra!= null) {
+				List<VOProductosCarrito> productos = superAndes.darVOProductosCarrito(Long.parseLong(carritoCompra));
+				for (VOProductosCarrito producto : productos) {
+					int cantidadProducto = superAndes.darCantidadProductoCarrito(Long.parseLong(carritoCompra), producto.getCodigoBarras());
+
+					int nuevasExist = superAndes.productoPorCodigo(producto.getCodigoBarras()).getExistenciasestante() + cantidadProducto;
+					int existenciasActualizadasEstante = superAndes.actualizarExistenciasEstante(producto.getCodigoBarras(), nuevasExist);
+				}
+
+				VOCarrito carritoNuevo = superAndes.dejarCarrito(Long.parseLong(carritoCompra));
+				panelDatos.actualizarInterfaz(resultado);
+			} else {
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e) {
+			resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	public void rfveinte(){
+		String resultado = "";
+		try {
+			List<VOCarrito> todosLosCarritos = superAndes.darCarritos();
+			for (VOCarrito carrito : todosLosCarritos) {
+				if(carrito.getCliente()==null){
+					List<VOProductosCarrito> productos = superAndes.darVOProductosCarrito(Long.parseLong(carrito));
+					if(productos!=null){
+						for (VOProductosCarrito producto : productos) {
+						int cantidadProducto = superAndes.darCantidadProductoCarrito(Long.parseLong(carrito), producto.getCodigoBarras());
 
+						int nuevasExist = superAndes.productoPorCodigo(producto.getCodigoBarras()).getExistenciasestante() + cantidadProducto;
+						int existenciasActualizadasEstante = superAndes.actualizarExistenciasEstante(producto.getCodigoBarras(), nuevasExist);
+						}
+					}
+				}
+			}
+			panelDatos.actualizarInterfaz(resultado);
+		} catch (Exception e) {
+			resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	public void rfveintiuno(){

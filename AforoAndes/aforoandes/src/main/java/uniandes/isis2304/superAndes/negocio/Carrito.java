@@ -2,7 +2,7 @@ package uniandes.isis2304.superAndes.negocio;
 
 public class Carrito implements VOCarrito{
     private long idCarrito;
-    private VOUsuario idUsuario;
+    private long idUsuario;
     private int total;
     
     public Carrito() {
@@ -10,8 +10,7 @@ public class Carrito implements VOCarrito{
         this.idUsuario = 0;
         this.total = 0;
     }
-    }
-    public Carrito(long idCarrito, VOUsuario idUsuario, int total) {
+    public Carrito(long idCarrito, long idUsuario, int total) {
         this.idCarrito = idCarrito;
         this.idUsuario = idUsuario;
         this.total = total;
@@ -22,10 +21,10 @@ public class Carrito implements VOCarrito{
     public void setIdCarrito(long idCarrito) {
         this.idCarrito = idCarrito;
     }
-    public VOUsuario getIdUsuario() {
+    public long getIdUsuario() {
         return idUsuario;
     }
-    public void setIdUsuario(VOUsuario idUsuario) {
+    public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
     }
     public int getTotal() {
