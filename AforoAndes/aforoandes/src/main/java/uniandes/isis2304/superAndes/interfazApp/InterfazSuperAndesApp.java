@@ -71,13 +71,12 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 	/**
 	 * Ruta al archivo de configuración de la interfaz
 	 */
-	private static final String CONFIG_INTERFAZ = "./AforoAndes/aforoandes/src/main/resources/config/interfaceConfigApp.json"; 
+	private static final String CONFIG_INTERFAZ = "./aforoandes/src/main/resources/config/interfaceConfigApp.json"; 
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos
 	 */
-	private static final String CONFIG_TABLAS = "./AforoAndes/aforoandes/src/main/resources/config/TablasBD_A.json"; 
-	
+	private static final String CONFIG_TABLAS = "./aforoandes/src/main/resources/config/TablasBD_A.json";
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
