@@ -32,14 +32,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.superAndes.negocio.Bar;
-import uniandes.isis2304.superAndes.negocio.Bebedor;
-import uniandes.isis2304.superAndes.negocio.Bebida;
+import uniandes.isis2304.superAndes.negocio.Carrito;
 import uniandes.isis2304.superAndes.negocio.Empleado;
-import uniandes.isis2304.superAndes.negocio.Gustan;
-import uniandes.isis2304.superAndes.negocio.Sirven;
-import uniandes.isis2304.superAndes.negocio.TipoBebida;
-import uniandes.isis2304.superAndes.negocio.Visitan;
+import uniandes.isis2304.superAndes.negocio.Productos;
+import uniandes.isis2304.superAndes.negocio.RolUsuario;
+import uniandes.isis2304.superAndes.negocio.Sucursal;
+import uniandes.isis2304.superAndes.negocio.SuperAndes;
+import uniandes.isis2304.superAndes.negocio.Usuario;
+
 
 /**
  * Clase para el manejador de persistencia del proyecto Parranderos
@@ -95,37 +95,7 @@ public class PersistenciaSuperAndes
 	 */
 	private SQLTipoBebida sqlTipoBebida;
 	
-	/**
-	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
-	 */
-	private SQLBebida sqlBebida;
 	
-	/**
-	 * Atributo para el acceso a la tabla BAR de la base de datos
-	 */
-	private SQLBar sqlBar;
-	
-	/**
-	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
-	 */
-	private SQLBebedor sqlBebedor;
-	
-	private SQLEmpleado sqlEmpleado;
-	
-	/**
-	 * Atributo para el acceso a la tabla GUSTAN de la base de datos
-	 */
-	private SQLGustan sqlGustan;
-	
-	/**
-	 * Atributo para el acceso a la tabla SIRVEN de la base de datos
-	 */
-	private SQLSirven sqlSirven;
-	
-	/**
-	 * Atributo para el acceso a la tabla VISITAN de la base de datos
-	 */
-	private SQLVisitan sqlVisitan;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -142,13 +112,33 @@ public class PersistenciaSuperAndes
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
 		tablas.add ("AforoAndes_sequence");
-		tablas.add ("BEBIDA");
-		tablas.add ("BAR");
-		tablas.add ("BEBEDOR");
-		tablas.add ("GUSTAN");
-		tablas.add ("SIRVEN");
-		tablas.add ("VISITAN");
-		tablas.add ("EMPLEADO");
+		tablas.add ("SUPERMERCADO");
+		tablas.add ("TIPO_PRODUCTO");
+		tablas.add ("PRODUCTOS");
+		tablas.add ("SUCURSALES");
+		tablas.add ("BODEGAS");
+		tablas.add ("LOCAL_DE_VENTAS");
+		tablas.add ("ESTANTES");
+		tablas.add ("PRODUCTOS_PERECEDEROS");
+		tablas.add ("ABARROTES");
+		tablas.add ("PROVEEDORES");
+		tablas.add ("PEDIDOS");
+		tablas.add ("PROMOCIONES");
+		tablas.add ("CLIENTES");
+		tablas.add ("COMPRA");
+		tablas.add ("PRODUCTO_COMPRA");
+		tablas.add ("PERSONA_NATURAL");
+		tablas.add ("EMPRESA");
+		tablas.add ("USUARIO");
+		tablas.add ("PEDIDOS_PRODUCTOS");
+		tablas.add ("PROVEEDORES_PRODUCTOS");
+		tablas.add ("SUCURSALES_PEDIDOS");
+		tablas.add ("SUCURSALES_PRODUCTOS");
+		tablas.add ("PRODUCTOS_ESTANTES");
+		tablas.add ("PRODUCTOS_BODEGAS");
+		tablas.add ("PROVEEDORES_SUCURSALES");
+		tablas.add ("BODEGAS_TIPO_PRODUCTO");
+
 }
 
 	/**
