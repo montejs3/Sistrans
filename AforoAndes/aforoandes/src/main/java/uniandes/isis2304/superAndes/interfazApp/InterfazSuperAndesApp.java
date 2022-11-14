@@ -48,6 +48,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.superAndes.negocio.SuperAndes;
+import uniandes.isis2304.superAndes.negocio.VOCarrito;
+import uniandes.isis2304.superAndes.negocio.VOProductos;
+import uniandes.isis2304.superAndes.negocio.VOProductosCarrito;
 import uniandes.isis2304.superAndes.negocio.SuperAndes;
 import uniandes.isis2304.superAndes.negocio.VOUsuario;
 
@@ -320,7 +323,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 
 	public void rfquince(){
 		try {
-			long carritoDisponible = superAndes.darCarritosCompraDisponibles();
+			String carritoDisponible = superAndes.darCarritosCompraDisponibles();
 			long cliente = Long.parseLong(JOptionPane.showInputDialog (this, "ID del cliente", "Solicitar un carrito de compras", JOptionPane.QUESTION_MESSAGE));
 			if(cliente!=null){
 				VOCarrito tb = superAndes.adicionarCarritoCliente(cliente,carritoDisponible);
@@ -362,7 +365,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 
 				if(nuevasExist<0) throw new Exception("No puede agregar más producos de los existentes");
 
-				int existenciasActualizadas = superAndes.actualizarExistencias(Long.parseLong(idProducto), nuevasExist);
+				int existenciasActualizadas = superAndes.actualizarExistenciasEstante(Long.parseLong(idProducto), nuevasExist);
 				resultado += "\nSe actualizaron las existencias del producto.";
 				VOProductosCarrito prca = superAndes.adicionarProductoCarrito(Long.parseLong(carritoCompra), Long.parseLong(idProducto), cantidad);
 				if(prca == null) throw new Exception("No se puedo añadir el producto al carrito.");
@@ -394,11 +397,10 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 			{
 				VOCarrito ca = superAndes.carritoPorId(Long.parseLong(carritoCompra));
 				if(ca == null) throw new Exception("El carrito no existe");
-				VOPr
-				 oductos pro = superAndes.productoPorCodigo(Long.parseLong(idProducto));
+				VOProductos pro = superAndes.productoPorCodigo(Long.parseLong(idProducto));
 				if(pro == null) throw new Exception("El producto no existe");
 
-				int productosCarritoAhora = superAndes.carritoProductosPorIdCarrito(Long.parseLong(carritoCompra)).getCantidadProducto(Long.parseLong(idProducto)) - cantidad;
+				int productosCarritoAhora = superAndes.carritoProductosPorIdCarrito(Long.parseLong(carritoCompra), Long.parseLong(idProducto)) - Integer.parseInt(cantidad);
 
 				if(productosCarritoAhora==0){
 					VOProductosCarrito prca = superAndes.eliminarProductoCarrito(Long.parseLong(carritoCompra), Long.parseLong(idProducto));

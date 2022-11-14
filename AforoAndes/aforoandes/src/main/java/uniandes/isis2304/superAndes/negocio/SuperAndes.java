@@ -96,12 +96,86 @@ public class SuperAndes
         return usuario;
 	}
 	
-	public VOSucursal adicionarSucursal(ciudad, direccion, nombre, id_sucursal, nivel_reorden, recompra, id_supermercado) {
+	public Sucursal adicionarSucursal(ciudad, direccion, nombre, id_sucursal, nivel_reorden, recompra, id_supermercado) {
 		log.info ("Adicionando Sucursal: " + nombre);
         Sucursal sucursal = ps.adicionarSucursal(ciudad, direccion, nombre, id_sucursal, nivel_reorden, recompra, id_supermercado);		
         log.info ("Adicionando Sucursal: " + sucursal + " tuplas insertadas");
         return sucursal;
 	}
+
+	public Carrito carritoPorId(long id) {
+		log.info ("Dar información de un carrito por id: " + id);
+		Carrito carrito = ps.darCarritoPorId (id);
+		log.info ("Buscando carrito por id: " + carrito != null ? carrito : "NO EXISTE");
+		return carrito;
+	}
+
+    public Productos productoPorCodigo(long id) {
+        log.info ("Dar producto por id: " + id);
+		Productos producto = ps.productoPorCodigo (id);
+		log.info ("Buscando carrito por id: " + producto != null ? producto : "NO EXISTE");
+		return producto;
+    }
+
+	public int actualizarExistenciasEstante(long codigoBarras, int nuevasExist) {
+		log.info ("Actualizar existencias estante: " + codigoBarras);
+		int existenciasActualizadas = ps.actualizarExistenciasEstante (codigoBarras, nuevasExist);
+		log.info ("Actualizando existencias estante: " + codigoBarras != null ? codigoBarras : "NO EXISTE");
+		return existenciasActualizadas;
+	}
+
+    public ProductosCarrito adicionarProductoCarrito(long idCarrito, long codigoBarras, String cantidad) {
+        log.info ("Adicionar producto a carrito: " + idCarrito);
+		ProductosCarrito productosCarrito = ps.adicionarProductoCarrito (idCarrito, codigoBarras, cantidad);
+		log.info ("Adicionando productos al carrito: " + idCarrito != null ? idCarrito : "NO EXISTE");
+		return productosCarrito;
+    }
+
+    public int carritoProductosPorIdCarrito(long idCarrito, long codigoBarras) {
+        log.info ("Producto " + codigoBarras + " en carrito: " + idCarrito);
+		int productosEnCarrito = ps.carritoProductosPorIdCarrito(idCarrito, codigoBarras);
+		log.info ("Mostrando cantidad del producto en el carrito: " + idCarrito != null ? idCarrito : "NO EXISTE");
+		return productosEnCarrito;
+    }
+
+    public ProductosCarrito eliminarProductoCarrito(long idCarrito, long codigoBarras) {
+        log.info ("Eliminar producto a carrito: " + idCarrito);
+		ProductosCarrito productosCarrito = ps.eliminarProductoCarrito(idCarrito, codigoBarras);
+		log.info ("Eliminando productos al carrito: " + idCarrito != null ? idCarrito : "NO EXISTE");
+		return productosCarrito;
+    }
+
+    public ProductosCarrito actualizarProductoCarrito(long idCarrito, long codigoBarras, int productosCarritoAhora) {
+        log.info ("Actualizar producto a carrito: " + idCarrito);
+		ProductosCarrito productosCarrito = ps.actualizarProductoCarrito(idCarrito, codigoBarras, productosCarritoAhora);
+		log.info ("Actualizando productos al carrito: " + idCarrito != null ? idCarrito : "NO EXISTE");
+		return productosCarrito;
+    }
+
+    public List<VOProductosCarrito> darVOProductosCarrito(long idCarrito) {
+        log.info ("Generando los VO de productosCarrito");        
+		List<VOProductosCarrito> voTipos = new LinkedList<VOProductosCarrito> ();
+		for (VOProductosCarrito tb : ps.darProductosCarrito(idCarrito))
+		{
+			voTipos.add (tb);
+		}
+		log.info ("Generando los VO de productoCarrito: " + voTipos.size() + " existentes");
+		return voTipos;
+    }
+
+    public int darTotalCarrito(long idCarrito) {
+        log.info ("Dar total en carrito: " + idCarrito);
+		int total = ps.darTotalCarrito(idCarrito);
+		log.info ("Dar total en carrito: " + idCarrito != null ? idCarrito : "NO EXISTE");
+		return total;
+    }
+
+    public Carrito dejarCarrito(long idCarrito) {
+        log.info ("Dejar carrito: " + idCarrito);
+		Carrito carrito = ps.dejarCarrito(idCarrito);
+		log.info ("Dejando carrito: " + idCarrito != null ? idCarrito : "NO EXISTE");
+		return carrito;
+    }
 
 	/* ****************************************************************
 	 * 			Métodos para administración
@@ -119,6 +193,4 @@ public class SuperAndes
         log.info ("Limpiando la BD de Parranderos: Listo!");
         return borrrados;
 	}
-
-	
 }
