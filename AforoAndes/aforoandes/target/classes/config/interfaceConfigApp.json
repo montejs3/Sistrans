@@ -2,7 +2,7 @@
 	"title": "Aplicación transaccional de AforoAndes Uniandes",
 	"frameH": 600,
 	"frameW": 800,
-	"bannerPath": "./src/main/resources/config/logo.png",
+	"bannerPath": "./AforoAndes/aforoandes/src/main/resources/config/banner.png",
 	"menuBar":
 	[
 		

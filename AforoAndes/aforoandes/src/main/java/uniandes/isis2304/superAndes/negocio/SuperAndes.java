@@ -22,7 +22,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.superAndes.interfazApp.VOEmpleado;
+
 import uniandes.isis2304.superAndes.persistencia.PersistenciaSuperAndes;
 
 /**

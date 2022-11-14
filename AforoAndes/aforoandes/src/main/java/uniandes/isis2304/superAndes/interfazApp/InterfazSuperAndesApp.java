@@ -50,7 +50,7 @@ import com.google.gson.stream.JsonReader;
 import uniandes.isis2304.superAndes.negocio.SuperAndes;
 import uniandes.isis2304.superAndes.negocio.SuperAndes;
 import uniandes.isis2304.superAndes.negocio.VOUsuario;
-import uniandes.isis2304.superAndes.negocio.VOTipoBebida;
+
 
 /**
  * Clase principal de la interfaz
@@ -71,12 +71,12 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 	/**
 	 * Ruta al archivo de configuración de la interfaz
 	 */
-	private static final String CONFIG_INTERFAZ = "./aforoandes/src/main/resources/config/interfaceConfigApp.json"; 
+	private static final String CONFIG_INTERFAZ = "./AforoAndes/aforoandes/src/main/resources/config/interfaceConfigApp.json"; 
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos
 	 */
-	private static final String CONFIG_TABLAS = "./aforoandes/src/main/resources/config/TablasBD_A.json";
+	private static final String CONFIG_TABLAS = "./AforoAndes/aforoandes/src/main/resources/config/TablasBD_A.json";
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/

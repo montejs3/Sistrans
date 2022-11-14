@@ -1,3 +1,5 @@
+create sequence AforoAndes_sequence;
+
 CREATE TABLE A_SUPERMERCADO (
 ID NUMBER PRIMARY KEY,
 NOMBRE VARCHAR(25) NOT NULL
