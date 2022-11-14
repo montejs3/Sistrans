@@ -358,7 +358,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 				VOProductos pro = superAndes.productoPorCodigo(Long.parseLong(idProducto));
 				if(pro == null) throw new Exception("El producto no existe");
 				
-				int nuevasExist = superAndes.productoPorCodigo().getExistenciasestante() - Integer.parseInt(cantidad);
+				int nuevasExist = superAndes.productoPorCodigo(Long.parseLong(idProducto)).getExistenciasestante() - Integer.parseInt(cantidad);
 
 				if(nuevasExist<0) throw new Exception("No puede agregar más producos de los existentes");
 
@@ -397,9 +397,17 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 				VOProductos pro = superAndes.productoPorCodigo(Long.parseLong(idProducto));
 				if(pro == null) throw new Exception("El producto no existe");
 
-				VOProductoCarrito 
-				productosCarritoAhora = 
-				if()
+				int productosCarritoAhora = superAndes.carritoProductosPorIdCarrito(Long.parseLong(carritoCompra)).getCantidadProducto(Long.parseLong(idProducto)) - cantidad;
+
+				if(productosCarritoAhora==0){
+					VOProductosCarrito prca = superAndes.eliminarProductoCarrito(Long.parseLong(carritoCompra), Long.parseLong(idProducto));
+				} 
+				else {
+					VOProductosCarrito prca = superAndes.actualizarProductoCarrito(Long.parseLong(carritoCompra), Long.parseLong(idProducto), productosCarritoAhora);
+				}
+
+				int nuevasExist = int nuevasExist = superAndes.productoPorCodigo(Long.parseLong(idProducto)).getExistenciasestante() + Integer.parseInt(cantidad);
+				int existenciasActualizadas = superAndes.actualizarExistencias(Long.parseLong(idProducto), nuevasExist);
 			}
 			else
 			{
@@ -407,11 +415,19 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
 
 	public void rfdieciocho() {
+		String resultado = "";
+		try {
+			String carritoCompra = JOptionPane.showInputDialog (this, "ID del carrito", "Sacar producto del carrito", JOptionPane.QUESTION_MESSAGE);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	public void rfdiecinueve() {

@@ -96,10 +96,9 @@ public class SuperAndes
         return usuario;
 	}
 	
-	public VOSucursal adicionarSucursal(String ciudad, String direccion, String nombre, long id_sucursal, int nivel_reorden, int recompra,
-	long id_supermercado) {
+	public VOSucursal adicionarSucursal(ciudad, direccion, nombre, id_sucursal, nivel_reorden, recompra, id_supermercado) {
 		log.info ("Adicionando Sucursal: " + nombre);
-        Sucursal sucursal = ps.adicionarUsuario (nombre,cedula,tipo, supermercado);		
+        Sucursal sucursal = ps.adicionarSucursal(ciudad, direccion, nombre, id_sucursal, nivel_reorden, recompra, id_supermercado);		
         log.info ("Adicionando Sucursal: " + sucursal + " tuplas insertadas");
         return sucursal;
 	}

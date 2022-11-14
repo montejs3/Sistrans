@@ -6,8 +6,9 @@ public class Usuario implements VOUsuario{
     private String nombre;
     private String correo_electronico;
     private String palabra_clave;
-    private VORolUsuario rolUsuario;
-    private VOSucursal idSucursal;
+    private long rolUsuario;
+    private long idSucursal;
+    
     
     public Usuario() {
         this.id = 0;
@@ -19,7 +20,7 @@ public class Usuario implements VOUsuario{
         this.idSucursal = 0;
     }
     public Usuario(long id, String tipoIdentificacion, String nombre, String correo_electronico, String palabra_clave,
-            VORolUsuario rolNuevoUsuario, VOSucursal sucuNuevoUsuario) {
+            long rolNuevoUsuario, long sucuNuevoUsuario) {
         this.id = id;
         this.tipoIdentificacion = tipoIdentificacion;
         this.nombre = nombre;
@@ -61,13 +62,13 @@ public class Usuario implements VOUsuario{
     public long getRolUsuario() {
         return getRolUsuario();
     }
-    public void setRolUsuario(VORolUsuario rolUsuario) {
+    public void setRolUsuario(long rolUsuario) {
         this.rolUsuario = rolUsuario;
     }
-    public VOSucursal getIdSucursal() {
+    public long getIdSucursal() {
         return idSucursal;
     }
-    public void setIdSucursal(VOSucursal idSucursal) {
+    public void setIdSucursal(long idSucursal) {
         this.idSucursal = idSucursal;
     }
     @Override

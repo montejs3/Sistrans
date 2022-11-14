@@ -13,7 +13,7 @@ public interface VOUsuario {
 
     public long getRolUsuario();
 
-    public VOSucursal getIdSucursal();
+    public long getIdSucursal();
 
     @Override
     public String toString();
