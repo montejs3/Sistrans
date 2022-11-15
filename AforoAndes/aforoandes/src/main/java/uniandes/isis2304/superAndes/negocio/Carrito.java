@@ -37,4 +37,9 @@ public class Carrito implements VOCarrito{
     public String toString() {
         return "Carrito [idCarrito=" + idCarrito + ", idUsuario=" + idUsuario + ", total=" + total + "]";
     }
+    @Override
+    public Object getCliente() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
