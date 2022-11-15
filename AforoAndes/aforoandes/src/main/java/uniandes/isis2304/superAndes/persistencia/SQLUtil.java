@@ -81,7 +81,6 @@ class SQLUtil
         Query qSirven = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSirven ());
         Query qVisitan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan ());
         Query qBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebida ());
-        Query qTipoBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoBebida ());
         Query qBebedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebedor ());
         Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar ());
 
@@ -89,11 +88,11 @@ class SQLUtil
         long sirvenEliminados = (long) qSirven.executeUnique ();
         long visitanEliminadas = (long) qVisitan.executeUnique ();
         long bebidasEliminadas = (long) qBebida.executeUnique ();
-        long tiposBebidaEliminados = (long) qTipoBebida.executeUnique ();
+        
         long bebedoresEliminados = (long) qBebedor.executeUnique ();
         long baresEliminados = (long) qBar.executeUnique ();
         return new long[] {gustanEliminados, sirvenEliminados, visitanEliminadas, bebidasEliminadas, 
-        		tiposBebidaEliminados, bebedoresEliminados, baresEliminados};
+        	 bebedoresEliminados, baresEliminados};
 	}
 
 }

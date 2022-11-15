@@ -1,17 +1,3 @@
-/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
- * Departamento	de	Ingeniería	de	Sistemas	y	Computación
- * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
- * 		
- * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
 
 package uniandes.isis2304.superAndes.persistencia;
 
@@ -33,7 +19,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import uniandes.isis2304.superAndes.negocio.Carrito;
-import uniandes.isis2304.superAndes.negocio.Empleado;
+
 import uniandes.isis2304.superAndes.negocio.Productos;
 import uniandes.isis2304.superAndes.negocio.RolUsuario;
 import uniandes.isis2304.superAndes.negocio.Sucursal;
@@ -41,60 +27,40 @@ import uniandes.isis2304.superAndes.negocio.SuperAndes;
 import uniandes.isis2304.superAndes.negocio.Usuario;
 
 
-/**
- * Clase para el manejador de persistencia del proyecto Parranderos
- * Traduce la información entre objetos Java y tuplas de la base de datos, en ambos sentidos
- * Sigue un patrón SINGLETON (Sólo puede haber UN objeto de esta clase) para comunicarse de manera correcta
- * con la base de datos
- * Se apoya en las clases SQLBar, SQLBebedor, SQLBebida, SQLGustan, SQLSirven, SQLTipoBebida y SQLVisitan, que son 
- * las que realizan el acceso a la base de datos
- * 
- * @author Germán Bravo
- */
-public class PersistenciaSuperAndes 
+public class PersistenciaSuperAndes
 {
-	/* ****************************************************************
-	 * 			Constantes
-	 *****************************************************************/
-	/**
-	 * Logger para escribir la traza de la ejecución
-	 */
+	
 	private static Logger log = Logger.getLogger(PersistenciaSuperAndes.class.getName());
 	
-	/**
-	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
-	 */
+
 	public final static String SQL = "javax.jdo.query.SQL";
 
-	/* ****************************************************************
-	 * 			Atributos
-	 *****************************************************************/
-	/**
-	 * Atributo privado que es el único objeto de la clase - Patrón SINGLETON
-	 */
+
 	private static PersistenciaSuperAndes instance;
 	
-	/**
-	 * Fábrica de Manejadores de persistencia, para el manejo correcto de las transacciones
-	 */
+
 	private PersistenceManagerFactory pmf;
 	
-	/**
-	 * Arreglo de cadenas con los nombres de las tablas de la base de datos, en su orden:
-	 * Secuenciador, tipoBebida, bebida, bar, bebedor, gustan, sirven y visitan
-	 */
+
 	private List <String> tablas;
 	
-	/**
-	 * Atributo para el acceso a las sentencias SQL propias a PersistenciaParranderos
-	 */
+	
 	private SQLUtil sqlUtil;
 	
 	/**
 	 * Atributo para el acceso a la tabla TIPOBEBIDA de la base de datos
 	 */
-	private SQLTipoBebida sqlTipoBebida;
-	
+	private SQLUsuario sqlUsuario;
+
+	private SQLCarrito sqlCarrito;
+
+	private SQLProductos sqlProductos;
+
+	private SQLSucursal sqlSucursal;
+
+	private SQLRolUsuario sqlRolUsuario;
+
+
 	
 	
 	/* ****************************************************************
@@ -213,16 +179,13 @@ public class PersistenciaSuperAndes
 	 */
 	private void crearClasesSQL ()
 	{
-		sqlTipoBebida = new SQLTipoBebida(this);
-
-		sqlBebida = new SQLBebida(this);
-		sqlBar = new SQLBar(this);
-		sqlBebedor = new SQLBebedor(this);
-		sqlGustan = new SQLGustan(this);
-		sqlSirven = new SQLSirven (this);
-		sqlVisitan = new SQLVisitan(this);		
+		
 		sqlUtil = new SQLUtil(this);
-		sqlEmpleado = new SQLEmpleado(this);
+		sqlUsuario = new SQLUsuario(this);
+		sqlCarrito = new SQLCarrito(this);
+		sqlProductos = new SQLProductos(this) ;
+		sqlSucursal= new SQLSucursal(this);
+	    sqlRolUsuario = new SQLRolUsuario(this);
 	}
 
 	/**
@@ -236,7 +199,7 @@ public class PersistenciaSuperAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de TipoBebida de parranderos
 	 */
-	public String darTablaTipoBebida ()
+	public String darTablaUsuario ()
 	{
 		return tablas.get (1);
 	}
@@ -244,7 +207,7 @@ public class PersistenciaSuperAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Bebida de parranderos
 	 */
-	public String darTablaBebida ()
+	public String darTablaCarrito ()
 	{
 		return tablas.get (2);
 	}
@@ -252,7 +215,7 @@ public class PersistenciaSuperAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Bar de parranderos
 	 */
-	public String darTablaBar ()
+	public String darTablaProducto ()
 	{
 		return tablas.get (3);
 	}
@@ -260,7 +223,7 @@ public class PersistenciaSuperAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Bebedor de parranderos
 	 */
-	public String darTablaBebedor ()
+	public String darTablaSucursal ()
 	{
 		return tablas.get (4);
 	}
@@ -268,7 +231,7 @@ public class PersistenciaSuperAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
 	 */
-	public String darTablaGustan ()
+	public String darTablaRolUsuario ()
 	{
 		return tablas.get (5);
 	}
@@ -276,23 +239,12 @@ public class PersistenciaSuperAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Sirven de parranderos
 	 */
-	public String darTablaSirven ()
-	{
-		return tablas.get (6);
 	}
 
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
 	 */
-	public String darTablaVisitan ()
-	{
-		return tablas.get (7);
-	}
-	
-	public String darTablaEmpleado ()
-	{
-		return tablas.get (2);
-	}
+
 	
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
@@ -326,45 +278,9 @@ public class PersistenciaSuperAndes
 	 * 			Métodos para manejar los TIPOS DE BEBIDA
 	 *****************************************************************/
 
-	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla TipoBebida
-	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre del tipo de bebida
-	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
-	 */
-	public TipoBebida adicionarTipoBebida(String nombre)
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long idTipoBebida = nextval ();
-            long tuplasInsertadas = sqlTipoBebida.adicionarTipoBebida(pm, idTipoBebida, nombre);
-            tx.commit();
-            
-            log.trace ("Inserción de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new TipoBebida (idTipoBebida, nombre);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
+
 	
-	
-	public Empleado adicionarEmpleado(String nombre,int cedula,String tipo,String supermercado)
+	public Usuario adicionarEmpleado(String nombre,int cedula,String tipo,String supermercado)
 	{
 	
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -373,12 +289,12 @@ public class PersistenciaSuperAndes
         {
             tx.begin();
     
-            long tuplasInsertadas = sqlEmpleado.adicionarEmpleado(pm, cedula, nombre,tipo,supermercado);
+            long tuplasInsertadas = sqlUsuario.adicionarUsuario(pm, cedula, nombre,tipo,supermercado);
             tx.commit();
             
             log.trace ("Inserción de empleado " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Empleado (nombre, cedula,tipo,supermercado);
+            return new Usuario (nombre, cedula,tipo,supermercado);
         }
         catch (Exception e)
         {
