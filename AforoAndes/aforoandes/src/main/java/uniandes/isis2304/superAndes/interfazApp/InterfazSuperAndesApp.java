@@ -39,7 +39,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import org.apache.log4j.Logger;
-import org.datanucleus.query.inmemory.StringAggregateExpression;
+
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -52,7 +52,7 @@ import uniandes.isis2304.superAndes.negocio.VOCarrito;
 import uniandes.isis2304.superAndes.negocio.VOProductos;
 import uniandes.isis2304.superAndes.negocio.VOProductosCarrito;
 import uniandes.isis2304.superAndes.negocio.VOSucursal;
-import uniandes.isis2304.superAndes.negocio.SuperAndes;
+
 import uniandes.isis2304.superAndes.negocio.VOUsuario;
 
 
@@ -298,7 +298,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
     		if (nombre != null )
     		{
 				//Debería agregar una sucursal
-        		VOSucursal tb = superAndes.adicionarSucursal();
+        		VOSucursal tb = superAndes.adicionarSucursal(supermercado, supermercado, supermercado, patas, patas, patas, patas);
         		System.out.println(tb);
         		if (tb == null)
         		{
