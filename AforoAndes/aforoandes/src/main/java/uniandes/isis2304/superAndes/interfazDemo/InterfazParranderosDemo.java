@@ -49,13 +49,6 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.superAndes.interfazApp.PanelDatos;
 import uniandes.isis2304.superAndes.negocio.SuperAndes;
-import uniandes.isis2304.superAndes.negocio.VOBar;
-import uniandes.isis2304.superAndes.negocio.VOBebedor;
-import uniandes.isis2304.superAndes.negocio.VOBebida;
-import uniandes.isis2304.superAndes.negocio.VOGustan;
-import uniandes.isis2304.superAndes.negocio.VOSirven;
-import uniandes.isis2304.superAndes.negocio.VOTipoBebida;
-import uniandes.isis2304.superAndes.negocio.VOVisitan;
 
 /**
  * Clase principal de la interfaz
@@ -255,48 +248,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
      * Pre: La base de datos está vacía
      * Post: La base de datos está vacía
      */
-    public void demoTipoBebida( )
-    {
-    	try 
-    	{
-    		// Ejecución de la demo y recolección de los resultados
-			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
-			String nombreTipoBebida = "Vino tinto";
-			boolean errorTipoBebida = false;
-			VOTipoBebida tipoBebida = parranderos.adicionarTipoBebida (nombreTipoBebida);
-			if (tipoBebida == null)
-			{
-				tipoBebida = parranderos.darTipoBebidaPorNombre (nombreTipoBebida);
-				errorTipoBebida = true;
-			}
-			List <VOTipoBebida> lista = parranderos.darVOTiposBebida();
-			long tbEliminados = parranderos.eliminarTipoBebidaPorId (tipoBebida.getId ());
-			
-			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
-			String resultado = "Demo de creación y listado de TipoBebida\n\n";
-			resultado += "\n\n************ Generando datos de prueba ************ \n";
-			if (errorTipoBebida)
-			{
-				resultado += "*** Exception creando tipo de bebida !!\n";
-				resultado += "*** Es probable que ese tipo de bebida ya existiera y hay restricción de UNICIDAD sobre el nombre del tipo de bebida\n";
-				resultado += "*** Revise el log de parranderos para más detalles\n";
-			}
-			resultado += "Adicionado el tipo de bebida con nombre: " + nombreTipoBebida + "\n";
-			resultado += "\n\n************ Ejecutando la demo ************ \n";
-			resultado +=  "\n" + listarTiposBebida (lista);
-			resultado += "\n\n************ Limpiando la base de datos ************ \n";
-			resultado += tbEliminados + " Tipos de bebida eliminados\n";
-			resultado += "\n Demo terminada";
-   
-			panelDatos.actualizarInterfaz(resultado);
-		} 
-    	catch (Exception e) 
-    	{
-//			e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }
+
 
 	/* ****************************************************************
 	 * 			Demos de Bebida
@@ -309,58 +261,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
      * Pre: La base de datos está vacía
      * Post: La base de datos está vacía
      */
-    @SuppressWarnings ("unused")
-	public void demoBebida( )
-    {
-    	try 
-    	{
-    		// Ejecución de la demo y recolección de los resultados
-			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
-			String nombreTipoBebida = "Vino tinto";
-			String nombreBebida = "120";
-			boolean errorTipoBebida = false;
-			VOTipoBebida tipoBebida = parranderos.adicionarTipoBebida (nombreTipoBebida);
-			if (tipoBebida == null)
-			{
-				tipoBebida = parranderos.darTipoBebidaPorNombre (nombreTipoBebida);
-				errorTipoBebida = true;
-			}
-			VOBebida bebida = parranderos.adicionarBebida(nombreBebida, tipoBebida.getId (), 10);
-			
-			List <VOTipoBebida> listaTiposBebida = parranderos.darVOTiposBebida();
-			List <VOBebida> listaBebidas = parranderos.darVOBebidas();
-			long bebEliminadas = parranderos.eliminarBebidaPorNombre(nombreBebida);
-			long tbEliminados = parranderos.eliminarTipoBebidaPorId (tipoBebida.getId ());
-			
-			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
-			String resultado = "Demo de creación y listado de Bebidas\n\n";
-			resultado += "\n\n************ Generando datos de prueba ************ \n\n";
-			if (errorTipoBebida)
-			{
-				resultado += "*** Exception creando tipo de bebida !!\n";
-				resultado += "*** Es probable que ese tipo de bebida ya existiera y hay restricción de UNICIDAD sobre el nombre del tipo de bebida\n";
-				resultado += "*** Revise el log de parranderos para más detalles\n";
-			}
-			resultado += "Adicionado el tipo de bebida con nombre: " + nombreTipoBebida + "\n";
-			resultado += "Adicionada la bebida con nombre: " + nombreBebida + "\n";
-			resultado += "\n\n************ Ejecutando la demo ************ \n";
-			resultado +=  "\n" + listarTiposBebida (listaTiposBebida);
-			resultado += "\n" + listarBebidas (listaBebidas);
-			resultado += "\n\n************ Limpiando la base de datos ************ \n";
-			resultado += bebEliminadas + " Bebidas eliminadas\n";
-			resultado += tbEliminados + " Tipos de bebida eliminados\n";
-			resultado += "\n Demo terminada";
    
-			panelDatos.actualizarInterfaz(resultado);
-		} 
-    	catch (Exception e) 
-    	{
-//			e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }
-
     /**
      * Demostración de creación y borrado de bebidas no servidas.
      * Incluye también los tipos de bebida pues el tipo de bebida es llave foránea en las bebidas
@@ -370,64 +271,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
      * Pre: La base de datos está vacía
      * Post: La base de datos está vacía
      */
-    public void demoElimNoServidas1 ( )
-    {
-    	try 
-    	{
-    		// Ejecución de la demo y recolección de los resultados
-			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
-			String nombreTipoBebida = "Vino tinto";
-			boolean errorTipoBebida = false;
-			VOTipoBebida tipoBebida = parranderos.adicionarTipoBebida (nombreTipoBebida);
-			if (tipoBebida == null)
-			{
-				tipoBebida = parranderos.darTipoBebidaPorNombre (nombreTipoBebida);
-				errorTipoBebida = true;
-			}
-			VOBebida bebida1 = parranderos.adicionarBebida("120", tipoBebida.getId (), 10);
-			VOBebida bebida2 = parranderos.adicionarBebida("Gato Negro", tipoBebida.getId (), 11);
-			VOBebida bebida3 = parranderos.adicionarBebida("Don Pedro", tipoBebida.getId (), 12);
-			
-			List <VOTipoBebida> listaTiposBebida = parranderos.darVOTiposBebida();
-			List <VOBebida> listaBebidas1 = parranderos.darVOBebidas();
-			List <VOSirven> listaSirven = parranderos.darVOSirven ();
-			long noServidasEliminadas = parranderos.eliminarBebidasNoServidas();
-			List <VOBebida> listaBebidas2 = parranderos.darVOBebidas();
-			
-			long bebEliminadas1 = parranderos.eliminarBebidaPorId(bebida1.getId ());
-			long bebEliminadas2 = parranderos.eliminarBebidaPorId(bebida2.getId ());
-			long bebEliminadas3 = parranderos.eliminarBebidaPorId(bebida3.getId ());
-			long tbEliminados = parranderos.eliminarTipoBebidaPorNombre (nombreTipoBebida);
-			
-			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
-			String resultado = "Demo de borrado de las bebidas no servidas 1\n\n";
-			resultado += "\n\n************ Generando datos de prueba ************ \n";
-			if (errorTipoBebida)
-			{
-				resultado += "*** Exception creando tipo de bebida !!\n";
-				resultado += "*** Es probable que ese tipo de bebida ya existiera y hay restricción de UNICIDAD sobre el nombre del tipo de bebida\n";
-				resultado += "*** Revise el log de parranderos para más detalles\n";
-			}
-			resultado +=  "\n" + listarTiposBebida (listaTiposBebida);
-			resultado += "\n" + listarBebidas (listaBebidas1);
-			resultado += "\n" + listarSirven (listaSirven);
-			resultado += "\n\n************ Ejecutando la demo: Borrando bebidas no servidas ************ \n";
-			resultado += noServidasEliminadas + " Bebidas eliminadas\n";
-			resultado += "\n" + listarBebidas (listaBebidas2);
-			resultado += "\n\n************ Limpiando la base de datos ************ \n";
-			resultado += (bebEliminadas1 + bebEliminadas2 + bebEliminadas3) + " Bebidas eliminadas\n";
-			resultado += tbEliminados + " Tipos de bebida eliminados\n";
-			resultado += "\n Demo terminada";
    
-			panelDatos.actualizarInterfaz(resultado);
-		} 
-    	catch (Exception e) 
-    	{
-//			e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }
 
     /**
      * Demostración de creación y borrado de bebidas no servidas.

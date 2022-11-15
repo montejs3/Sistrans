@@ -6,4 +6,5 @@ public interface VOCarrito {
     public int getTotal() ;
     @Override
     public String toString();
+    public Object getCliente();
 }

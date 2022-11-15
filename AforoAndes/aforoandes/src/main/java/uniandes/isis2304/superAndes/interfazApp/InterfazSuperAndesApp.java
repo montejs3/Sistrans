@@ -51,6 +51,7 @@ import uniandes.isis2304.superAndes.negocio.SuperAndes;
 import uniandes.isis2304.superAndes.negocio.VOCarrito;
 import uniandes.isis2304.superAndes.negocio.VOProductos;
 import uniandes.isis2304.superAndes.negocio.VOProductosCarrito;
+import uniandes.isis2304.superAndes.negocio.VOSucursal;
 import uniandes.isis2304.superAndes.negocio.SuperAndes;
 import uniandes.isis2304.superAndes.negocio.VOUsuario;
 
@@ -297,7 +298,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
     		if (nombre != null )
     		{
 				//Debería agregar una sucursal
-        		VOSucursal tb = superAndes.adicionarSucursal(nombre, pata, ciudad, supermercado);
+        		VOSucursal tb = superAndes.adicionarSucursal();
         		System.out.println(tb);
         		if (tb == null)
         		{
@@ -325,7 +326,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 		try {
 			String carritoDisponible = superAndes.darCarritosCompraDisponibles();
 			long cliente = Long.parseLong(JOptionPane.showInputDialog (this, "ID del cliente", "Solicitar un carrito de compras", JOptionPane.QUESTION_MESSAGE));
-			if(cliente!=null){
+			if(carritoDisponible != null){
 				VOCarrito tb = superAndes.adicionarCarritoCliente(cliente,carritoDisponible);
 				if(tb!=null)
 				{
@@ -361,7 +362,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 				VOProductos pro = superAndes.productoPorCodigo(Long.parseLong(idProducto));
 				if(pro == null) throw new Exception("El producto no existe");
 				
-				int nuevasExist = superAndes.productoPorCodigo(Long.parseLong(idProducto)).getExistenciasestante() - Integer.parseInt(cantidad);
+				int nuevasExist = (int) (superAndes.productoPorCodigo(Long.parseLong(idProducto)).getExistenciasestante() - Integer.parseInt(cantidad));
 
 				if(nuevasExist<0) throw new Exception("No puede agregar más producos de los existentes");
 
@@ -409,7 +410,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 					VOProductosCarrito prca = superAndes.actualizarProductoCarrito(Long.parseLong(carritoCompra), Long.parseLong(idProducto), productosCarritoAhora);
 				}
 
-				int nuevasExist = superAndes.productoPorCodigo(Long.parseLong(idProducto)).getExistenciasestante() + Integer.parseInt(cantidad);
+				int nuevasExist = (int) (superAndes.productoPorCodigo(Long.parseLong(idProducto)).getExistenciasestante() + Integer.parseInt(cantidad));
 				int existenciasActualizadas = superAndes.actualizarExistenciasEstante(Long.parseLong(idProducto), nuevasExist);
 			}
 			else
@@ -434,11 +435,12 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 				for (VOProductosCarrito producto : productos) {
 					int cantidadProducto = superAndes.darCantidadProductoCarrito(Long.parseLong(carritoCompra), producto.getCodigoBarras());
 
-					int nuevasExist = superAndes.productoPorCodigo(producto.getCodigoBarras()).getExistenciasestante() - cantidadProducto;
+					int nuevasExist = (int) (superAndes.productoPorCodigo(producto.getCodigoBarras()).getExistenciasestante() - cantidadProducto);
 					if(nuevasExist<0) throw new Exception("Ocurrió un error.");
 					if(nuevasExist==0){
-						int existenciasActualizadasEstante = superAndes.actualizarExistenciasEstante(producto.getCodigoBarras(), superAndes.darEstantePorProducto(producto.getCodigoBarras()).getCapacidad());
+						/*int existenciasActualizadasEstante = superAndes.actualizarExistenciasEstante(producto.getCodigoBarras(), ((Object) superAndes.darEstantePorProducto(producto.getCodigoBarras())).getCapacidad());
 						int existenciasActualizadasBodega = superAndes.actualizarExistenciasBodega(producto.getCodigoBarras(), superAndes.darExistenciasBodega(producto.getCodigoBarras())-superAndes.darEstantePorProducto(producto.getCodigoBarras()).getCapacidad());
+						**/
 					}
 					else{
 						int existenciasActualizadasEstante = superAndes.actualizarExistenciasEstante(producto.getCodigoBarras(), nuevasExist);
@@ -461,7 +463,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-
+/* 
 	public void rfdiecinueve() {
 		String resultado = "";
 		try {
@@ -471,7 +473,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 				for (VOProductosCarrito producto : productos) {
 					int cantidadProducto = superAndes.darCantidadProductoCarrito(Long.parseLong(carritoCompra), producto.getCodigoBarras());
 
-					int nuevasExist = superAndes.productoPorCodigo(producto.getCodigoBarras()).getExistenciasestante() + cantidadProducto;
+					int nuevasExist = (int) (superAndes.productoPorCodigo(producto.getCodigoBarras()).getExistenciasestante() + cantidadProducto);
 					int existenciasActualizadasEstante = superAndes.actualizarExistenciasEstante(producto.getCodigoBarras(), nuevasExist);
 				}
 
@@ -485,7 +487,8 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-
+	*/
+/* 
 	public void rfveinte(){
 		String resultado = "";
 		try {
@@ -497,7 +500,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 						for (VOProductosCarrito producto : productos) {
 						int cantidadProducto = superAndes.darCantidadProductoCarrito(Long.parseLong(carrito), producto.getCodigoBarras());
 
-						int nuevasExist = superAndes.productoPorCodigo(producto.getCodigoBarras()).getExistenciasestante() + cantidadProducto;
+						int nuevasExist = (int) (superAndes.productoPorCodigo(producto.getCodigoBarras()).getExistenciasestante() + cantidadProducto);
 						int existenciasActualizadasEstante = superAndes.actualizarExistenciasEstante(producto.getCodigoBarras(), nuevasExist);
 						}
 					}
@@ -509,6 +512,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+	*/
 
 	public void rfveintiuno(){
 
@@ -683,16 +687,7 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
      * @param lista - La lista con los tipos de bebida
      * @return La cadena con una líea para cada tipo de bebida recibido
      */
-    private String listarTiposBebida(List<VOTipoBebida> lista) 
-    {
-    	String resp = "Los tipos de bebida existentes son:\n";
-    	int i = 1;
-        for (VOTipoBebida tb : lista)
-        {
-        	resp += i++ + ". " + tb.toString() + "\n";
-        }
-        return resp;
-	}
+  
 
     /**
      * Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO

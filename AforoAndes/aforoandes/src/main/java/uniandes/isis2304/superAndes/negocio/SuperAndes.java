@@ -15,7 +15,7 @@
 
 package uniandes.isis2304.superAndes.negocio;
 
-import java.sql.Timestamp;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -96,7 +96,7 @@ public class SuperAndes
         return usuario;
 	}
 	
-	public Sucursal adicionarSucursal(ciudad, direccion, nombre, id_sucursal, nivel_reorden, recompra, id_supermercado) {
+	public Sucursal adicionarSucursal(String ciudad, String direccion, String nombre, int id_sucursal, int nivel_reorden, int recompra, int id_supermercado) {
 		log.info ("Adicionando Sucursal: " + nombre);
         Sucursal sucursal = ps.adicionarSucursal(ciudad, direccion, nombre, id_sucursal, nivel_reorden, recompra, id_supermercado);		
         log.info ("Adicionando Sucursal: " + sucursal + " tuplas insertadas");
@@ -193,4 +193,36 @@ public class SuperAndes
         log.info ("Limpiando la BD de Parranderos: Listo!");
         return borrrados;
 	}
+
+    public long[] limpiarsuperAndes() {
+        return null;
+    }
+
+    public List<VOCarrito> darCarritos() {
+        return null;
+    }
+
+    public VOUsuario adicionarUsuario(String nombre, int pata, String tipo, String supermercado) {
+        return null;
+    }
+
+    public String darCarritosCompraDisponibles() {
+        return null;
+    }
+
+    public VOCarrito adicionarCarritoCliente(long cliente, String carritoDisponible) {
+        return null;
+    }
+
+    public int darCantidadProductoCarrito(long parseLong, long codigoBarras) {
+        return 0;
+    }
+
+    public Object darEstantePorProducto(long codigoBarras) {
+        return null;
+    }
+
+    public int darExistenciasBodega(long codigoBarras) {
+        return 0;
+    }
 }
