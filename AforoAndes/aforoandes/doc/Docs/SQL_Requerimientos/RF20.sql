@@ -3,7 +3,5 @@ FROM  A_CARRITO_PRODUCTO
 WHERE  IdUsuario = 15000
 
 
-UPDATE Carrito 
-SET IdUsuario = NULL
-FROM Carrito
-WHERE getIdUsuario = 15000
+INSERT INTO Estantes
+VALUES(1,10,1,15,10,1);

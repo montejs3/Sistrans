@@ -1,2 +1,4 @@
-INSERT INTO A_CARRITO
-VALUES (1,1000654987,1);
+UPDATE Carrito 
+SET IdUsuario = UsuarioCarro
+FROM Carrito
+WHERE getIdUsuario = NULL, rownum = 1;
